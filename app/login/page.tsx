@@ -10,7 +10,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setLoading(true);
@@ -52,7 +52,7 @@ export default function LoginPage() {
             type="email"
             id="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="peer w-full px-4 pt-6 pb-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
             autoComplete="email"
@@ -69,7 +69,7 @@ export default function LoginPage() {
             type={showPassword ? "text" : "password"}
             id="password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="peer w-full px-4 pt-6 pb-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
             autoComplete="current-password"
@@ -82,15 +82,41 @@ export default function LoginPage() {
           </label>
           <button
             type="button"
-            onClick={() => setShowPassword(v => !v)}
+            onClick={() => setShowPassword((v) => !v)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-500 focus:outline-none"
             tabIndex={-1}
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-5.523 0-10-4.477-10-10 0-1.657.4-3.217 1.125-4.575M15 12a3 3 0 11-6 0 3 3 0 016 0zm6.875-4.575A9.978 9.978 0 0122 9c0 5.523-4.477 10-10 10a9.978 9.978 0 01-4.575-1.125" /></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13.875 18.825A10.05 10.05 0 0112 19c-5.523 0-10-4.477-10-10 0-1.657.4-3.217 1.125-4.575M15 12a3 3 0 11-6 0 3 3 0 016 0zm6.875-4.575A9.978 9.978 0 0122 9c0 5.523-4.477 10-10 10a9.978 9.978 0 01-4.575-1.125"
+                />
+              </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm2.021-2.021A9.956 9.956 0 0121 12c0 5.523-4.477 10-10 10-2.21 0-4.257-.715-5.979-1.929M4.929 4.929A9.956 9.956 0 013 12c0 5.523 4.477 10 10 10 2.21 0 4.257-.715 5.979-1.929" /></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm2.021-2.021A9.956 9.956 0 0121 12c0 5.523-4.477 10-10 10-2.21 0-4.257-.715-5.979-1.929M4.929 4.929A9.956 9.956 0 013 12c0 5.523 4.477 10 10 10 2.21 0 4.257-.715 5.979-1.929"
+                />
+              </svg>
             )}
           </button>
         </div>
@@ -102,9 +128,15 @@ export default function LoginPage() {
           {loading ? "Logging in..." : "Login"}
         </button>
         <p className="text-center text-gray-500 dark:text-gray-400 text-sm">
-          Don't have an account? <Link href="/sign-up" className="text-blue-600 dark:text-blue-400 hover:underline">Sign up</Link>
+          Don't have an account?{" "}
+          <Link
+            href="/sign-up"
+            className="text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            Sign up
+          </Link>
         </p>
       </form>
     </div>
-  );    
+  );
 }
